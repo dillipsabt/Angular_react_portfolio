@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => ({
       deny: [".env", ".env.*", "*.{crt,pem}", "**/.git/**", "server/**"],
     },
   },
+  base: process.env.GITHUB_ACTIONS ? "/Angular_react_portfolio/" : "/",
   build: {
     outDir: "dist/spa",
   },
