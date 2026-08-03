@@ -46,7 +46,7 @@ export default function Index() {
   useEffect(() => { const root = document.documentElement; root.classList.toggle("dark", theme === "dark" || (theme === "system" && matchMedia("(prefers-color-scheme: dark)").matches)); }, [theme]);
   const year = useMemo(() => new Date().getFullYear(), []);
   const scroll = (id: string) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setMenu(false); };
-  const resume = () => { const link = document.createElement("a"); link.href = "/DILLIP_KUMAR_SABAT_Updated_CV.pdf"; link.download = "DILLIP_KUMAR_SABAT_Updated_CV.pdf"; link.click(); };
+  const resume = () => { const link = document.createElement("a"); link.href = `${import.meta.env.BASE_URL}DILLIP_KUMAR_SABAT_Updated_CV.pdf`; link.download = "DILLIP_KUMAR_SABAT_Updated_CV.pdf"; link.click(); };
   return <div className="min-h-screen overflow-hidden bg-[#f7f8fa] text-[#111318] transition-colors duration-500 dark:bg-[#08090b] dark:text-white">
     <div className="pointer-events-none fixed inset-0 -z-0 opacity-70 dark:opacity-100"><div className="absolute -left-40 top-0 h-[520px] w-[520px] rounded-full bg-cyan-200/30 blur-[130px] dark:bg-cyan-500/10"/><div className="absolute right-[-180px] top-[35%] h-[500px] w-[500px] rounded-full bg-violet-200/30 blur-[140px] dark:bg-violet-600/10"/></div>
     <header className="fixed inset-x-0 top-0 z-50 border-b border-black/[.06] bg-white/75 backdrop-blur-xl dark:border-white/[.08] dark:bg-[#08090b]/75"><div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 sm:px-8">
