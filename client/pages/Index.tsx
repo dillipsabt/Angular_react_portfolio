@@ -1,62 +1,82 @@
-import { DemoResponse } from "@shared/api";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import {
+  ArrowUpRight, Check, ChevronDown, Code2, Download, Github, Linkedin,
+  Mail, MapPin, Menu, Moon, Palette, Phone, Quote, Send, Sparkles,
+  Sun, Terminal, X, Zap,
+} from "lucide-react";
+
+const portrait = "https://images.pexels.com/photos/6804094/pexels-photo-6804094.jpeg";
+const roles = ["Frontend Developer", "React.js Developer", "Angular Developer", "Software Engineer", "UI Engineer"];
+const nav = ["About", "Experience", "Projects", "Contact"];
+const skills = {
+  Frontend: ["React.js", "Angular", "TypeScript", "JavaScript", "Tailwind CSS", "HTML & CSS"],
+  "State + Data": ["Redux Toolkit", "NgRx", "Context API", "REST APIs", "Axios", "Interceptors"],
+  Architecture: ["JWT", "RBAC", "Protected Routes", "Multi-tenant SaaS", "Performance", "Responsive UI"],
+  Workflow: ["Git", "GitHub", "Bitbucket", "Jira", "Vite", "Postman", "Figma"],
+};
+const experiences = [
+  { company: "Walkout Tech", role: "Software Engineer", period: "2022 — Present", project: "School Management System (SSMS)", color: "cyan", points: ["25+ enterprise modules", "100+ REST APIs", "Redux Toolkit & multi-tenant architecture", "JWT authentication, RBAC & production support"] },
+  { company: "Brain Technosys", role: "Software Engineer", period: "2021 — 2022", project: "SentriDocs · Shutter Management", color: "violet", points: ["React and Angular applications", "NgRx state architecture", "Pricing modules & payment integration", "REST API integrations"] },
+  { company: "Sparity", role: "Associate Software Engineer", period: "2020 — 2021", project: "Tax Litigation · Blood Donation", color: "amber", points: ["Angular and TypeScript development", "Reusable Bootstrap systems", "REST API integrations", "Responsive workflow experiences"] },
+];
+const projects = [
+  { name: "School Management System", type: "Enterprise multi-tenant ERP", description: "A complete operating system for modern schools, from admissions and fees to attendance, results, and parent communication.", tags: ["React", "Redux Toolkit", "Tailwind CSS"], number: "01", gradient: "from-cyan-400/25 via-blue-500/10 to-transparent" },
+  { name: "SentriDocs", type: "Loan processing system", description: "Document-first workflows that help financial teams move applications from intake to approval with clarity.", tags: ["Angular", "NgRx", "REST APIs"], number: "02", gradient: "from-violet-400/25 via-fuchsia-500/10 to-transparent" },
+  { name: "Shutter Management", type: "Pricing management platform", description: "A focused pricing experience designed for speed, consistency, and confident decisions across teams.", tags: ["React", "TypeScript", "API Integration"], number: "03", gradient: "from-amber-300/25 via-orange-400/10 to-transparent" },
+  { name: "Tax Litigation", type: "Legal operations platform", description: "Structured case management for complex tax litigation workflows, documents, and stakeholders.", tags: ["Angular", "TypeScript", "Responsive UI"], number: "04", gradient: "from-emerald-300/20 via-teal-400/10 to-transparent" },
+];
+const metrics = [["4+", "Years experience"], ["30+", "Enterprise modules"], ["40+", "Reusable components"], ["100+", "APIs integrated"], ["10+", "Projects shipped"]];
+const services = ["Frontend development", "Enterprise dashboards", "React applications", "Angular applications", "UI / UX development", "API integration", "Performance optimization", "Responsive development"];
+
+function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  return <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: .65, delay, ease: [.22, 1, .36, 1] }} className={className}>{children}</motion.div>;
+}
 
 export default function Index() {
-  const [exampleFromServer, setExampleFromServer] = useState("");
-  // Fetch users on component mount
-  useEffect(() => {
-    fetchDemo();
-  }, []);
+  const [role, setRole] = useState(0);
+  const [theme, setTheme] = useState<"light" | "dark" | "system">("dark");
+  const [menu, setMenu] = useState(false);
+  const [sent, setSent] = useState(false);
+  useEffect(() => { const timer = setInterval(() => setRole((value) => (value + 1) % roles.length), 2600); return () => clearInterval(timer); }, []);
+  useEffect(() => { const root = document.documentElement; root.classList.toggle("dark", theme === "dark" || (theme === "system" && matchMedia("(prefers-color-scheme: dark)").matches)); }, [theme]);
+  const year = useMemo(() => new Date().getFullYear(), []);
+  const scroll = (id: string) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setMenu(false); };
+  const resume = () => window.print();
+  return <div className="min-h-screen overflow-hidden bg-[#f7f8fa] text-[#111318] transition-colors duration-500 dark:bg-[#08090b] dark:text-white">
+    <div className="pointer-events-none fixed inset-0 -z-0 opacity-70 dark:opacity-100"><div className="absolute -left-40 top-0 h-[520px] w-[520px] rounded-full bg-cyan-200/30 blur-[130px] dark:bg-cyan-500/10"/><div className="absolute right-[-180px] top-[35%] h-[500px] w-[500px] rounded-full bg-violet-200/30 blur-[140px] dark:bg-violet-600/10"/></div>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-black/[.06] bg-white/75 backdrop-blur-xl dark:border-white/[.08] dark:bg-[#08090b]/75"><div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 sm:px-8">
+      <button onClick={() => scroll("top")} className="flex items-center gap-3 text-left"><span className="grid h-9 w-9 place-items-center rounded-xl bg-[#111318] text-cyan-300 dark:bg-white dark:text-[#111318]"><Terminal size={17}/></span><span className="hidden text-sm font-bold tracking-[.18em] sm:block">DKS<span className="text-cyan-500">.</span></span></button>
+      <nav className="hidden items-center gap-8 md:flex">{nav.map((item) => <button key={item} onClick={() => scroll(item.toLowerCase())} className="text-sm text-black/55 transition hover:text-black dark:text-white/55 dark:hover:text-white">{item}</button>)}</nav>
+      <div className="flex items-center gap-2"><button onClick={() => setTheme(theme === "dark" ? "light" : theme === "light" ? "system" : "dark")} className="grid h-9 w-9 place-items-center rounded-full border border-black/10 text-black/60 transition hover:bg-black/5 dark:border-white/10 dark:text-white/60 dark:hover:bg-white/10" aria-label={`Theme: ${theme}`}>{theme === "dark" ? <Sun size={16}/> : theme === "light" ? <Moon size={16}/> : <Palette size={16}/>}</button><button onClick={() => setMenu(!menu)} className="grid h-9 w-9 place-items-center rounded-full border border-black/10 md:hidden dark:border-white/10">{menu ? <X size={17}/> : <Menu size={17}/>}</button><button onClick={() => scroll("contact")} className="hidden rounded-full bg-[#111318] px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-lg md:block dark:bg-white dark:text-[#111318]">Let's talk <ArrowUpRight className="ml-1 inline" size={15}/></button></div>
+      {menu && <div className="absolute inset-x-4 top-[68px] rounded-2xl border border-black/10 bg-white p-3 shadow-xl dark:border-white/10 dark:bg-[#111318]">{nav.map(item => <button key={item} onClick={() => scroll(item.toLowerCase())} className="block w-full rounded-xl px-4 py-3 text-left text-sm hover:bg-black/5 dark:hover:bg-white/10">{item}</button>)}</div>}
+    </div></header>
 
-  // Example of how to fetch data from the server (if needed)
-  const fetchDemo = async () => {
-    try {
-      const response = await fetch("/api/demo");
-      const data = (await response.json()) as DemoResponse;
-      setExampleFromServer(data.message);
-    } catch (error) {
-      console.error("Error fetching hello:", error);
-    }
-  };
+    <main id="top" className="relative z-10">
+      <section className="mx-auto grid min-h-[760px] max-w-7xl items-center gap-14 px-5 pb-20 pt-36 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:pb-28 lg:pt-40"><div>
+        <Reveal><div className="mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/[.07] px-3.5 py-2 text-[11px] font-bold uppercase tracking-[.2em] text-cyan-700 dark:text-cyan-300"><span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400"/> Available for select projects</div></Reveal>
+        <Reveal delay={.08}><p className="mb-4 text-sm font-semibold uppercase tracking-[.22em] text-black/45 dark:text-white/45">Hello, I’m Dillip</p><h1 className="max-w-3xl text-[clamp(3.2rem,7vw,6.6rem)] font-bold leading-[.92] tracking-[-.075em]">Building digital<br/><span className="bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-500 bg-clip-text text-transparent">systems that scale.</span></h1></Reveal>
+        <Reveal delay={.16}><div className="mt-8 flex items-center gap-3 text-lg font-medium text-black/70 dark:text-white/70"><span className="text-black/30 dark:text-white/30">I’m a</span><motion.span key={role} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-black dark:text-white">{roles[role]}</motion.span></div><p className="mt-6 max-w-xl text-base leading-8 text-black/55 dark:text-white/55">Frontend Software Engineer with 4+ years of experience crafting scalable enterprise applications with React, Angular, TypeScript, and thoughtful interface systems.</p></Reveal>
+        <Reveal delay={.24}><div className="mt-9 flex flex-wrap gap-3"><button onClick={resume} className="rounded-full bg-[#111318] px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-1 hover:shadow-xl dark:bg-white dark:text-[#111318]"><Download className="mr-2 inline" size={16}/> Download resume</button><button onClick={() => scroll("contact")} className="rounded-full border border-black/15 px-6 py-3.5 text-sm font-semibold transition hover:-translate-y-1 hover:bg-black/5 dark:border-white/15 dark:hover:bg-white/10">Contact me <ArrowUpRight className="ml-1 inline" size={16}/></button></div></Reveal>
+        <Reveal delay={.3}><div className="mt-14 flex items-center gap-5 text-black/45 dark:text-white/45"><span className="text-xs uppercase tracking-[.2em]">Based in India</span><span className="h-px w-12 bg-black/15 dark:bg-white/15"/><span className="text-xs uppercase tracking-[.2em]">Working globally</span></div></Reveal>
+      </div><Reveal className="relative mx-auto w-full max-w-[480px]" delay={.15}><div className="relative aspect-[.88] overflow-hidden rounded-[2.5rem] border border-black/10 bg-[#e9edf1] shadow-2xl shadow-cyan-900/10 dark:border-white/10 dark:bg-[#15181d]"><div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 via-transparent to-violet-500/20"/><img src={portrait} alt="Dillip Kumar Sabat" className="h-full w-full object-cover object-top mix-blend-multiply grayscale-[.1] dark:mix-blend-normal"/><div className="absolute inset-x-7 bottom-7 rounded-2xl border border-white/20 bg-[#111318]/75 p-4 text-white backdrop-blur-xl"><div className="flex items-center justify-between"><div><p className="text-xs text-white/50">Currently building</p><p className="mt-1 text-sm font-semibold">Enterprise-grade experiences</p></div><span className="grid h-9 w-9 place-items-center rounded-full bg-cyan-400 text-[#111318]"><Zap size={16} fill="currentColor"/></span></div></div></div><div className="absolute -right-4 top-12 hidden rounded-2xl border border-black/10 bg-white/80 p-4 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-white/10 sm:block"><p className="text-[10px] uppercase tracking-[.18em] text-black/45 dark:text-white/45">Experience</p><p className="mt-1 text-2xl font-bold">04<span className="text-cyan-500">+</span></p><p className="text-xs text-black/45 dark:text-white/45">years of impact</p></div></Reveal></section>
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
-      <div className="text-center">
-        {/* TODO: FUSION_GENERATION_APP_PLACEHOLDER replace everything here with the actual app! */}
-        <h1 className="text-2xl font-semibold text-slate-800 flex items-center justify-center gap-3">
-          <svg
-            className="animate-spin h-8 w-8 text-slate-400"
-            viewBox="0 0 50 50"
-          >
-            <circle
-              className="opacity-30"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-            />
-            <circle
-              className="text-slate-600"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-              strokeDasharray="100"
-              strokeDashoffset="75"
-            />
-          </svg>
-          Generating your app...
-        </h1>
-        <p className="mt-4 text-slate-600 max-w-md">
-          Watch the chat on the left for updates that might need your attention
-          to finish generating
-        </p>
-        <p className="mt-4 hidden max-w-md">{exampleFromServer}</p>
-      </div>
-    </div>
-  );
+      <section id="about" className="border-y border-black/[.06] bg-white/55 dark:border-white/[.07] dark:bg-white/[.02]"><div className="mx-auto grid max-w-7xl gap-14 px-5 py-24 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:py-32"><Reveal><p className="eyebrow">01 / About me</p><h2 className="section-title mt-5">The details make<br/><span className="text-black/35 dark:text-white/35">the difference.</span></h2></Reveal><Reveal delay={.1}><div><p className="text-xl leading-9 text-black/75 dark:text-white/75">I turn complex product requirements into calm, intuitive interfaces that teams can rely on. My work lives at the intersection of clean UI engineering, scalable architecture, and measurable performance.</p><div className="mt-9 grid gap-4 sm:grid-cols-2">{["Enterprise applications", "Multi-tenant SaaS", "JWT + RBAC security", "Performance optimization"].map((item) => <div key={item} className="flex items-center gap-3 rounded-xl border border-black/[.08] bg-white/70 p-4 text-sm dark:border-white/[.09] dark:bg-white/[.04]"><span className="grid h-6 w-6 place-items-center rounded-full bg-cyan-400/15 text-cyan-600 dark:text-cyan-300"><Check size={14}/></span>{item}</div>)}</div></div></Reveal></div></section>
+
+      <section id="experience" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32"><Reveal><p className="eyebrow">02 / Experience</p><div className="mt-5 flex flex-wrap items-end justify-between gap-6"><h2 className="section-title">A career in<br/><span className="text-black/35 dark:text-white/35">building momentum.</span></h2><p className="max-w-xs text-sm leading-6 text-black/45 dark:text-white/45">Four years of shipping thoughtful software across education, finance, legal, and operations.</p></div></Reveal><div className="mt-16 space-y-5">{experiences.map((exp, i) => <Reveal key={exp.company} delay={i * .08}><div className="group grid gap-6 rounded-[1.75rem] border border-black/[.08] bg-white/65 p-6 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-black/[.04] dark:border-white/[.09] dark:bg-white/[.035] md:grid-cols-[.35fr_1fr] md:p-8"><div><div className={`mb-5 h-2 w-12 rounded-full ${exp.color === "cyan" ? "bg-cyan-400" : exp.color === "violet" ? "bg-violet-400" : "bg-amber-300"}`}/><p className="text-lg font-bold">{exp.company}</p><p className="mt-1 text-sm text-black/45 dark:text-white/45">{exp.period}</p></div><div><div className="flex flex-wrap items-baseline justify-between gap-3"><div><p className="text-sm font-medium text-cyan-600 dark:text-cyan-300">{exp.role}</p><h3 className="mt-1 text-2xl font-semibold tracking-tight">{exp.project}</h3></div><ArrowUpRight className="text-black/20 transition group-hover:text-cyan-500 dark:text-white/20"/></div><div className="mt-6 flex flex-wrap gap-2">{exp.points.map(point => <span key={point} className="rounded-full bg-black/[.045] px-3 py-1.5 text-xs text-black/60 dark:bg-white/[.07] dark:text-white/60">{point}</span>)}</div></div></div></Reveal>)}</div></section>
+
+      <section id="skills" className="bg-[#111318] text-white"><div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32"><Reveal><p className="eyebrow text-cyan-300/70">03 / Skill set</p><h2 className="section-title mt-5">Tools for turning<br/><span className="text-white/35">ideas into impact.</span></h2></Reveal><div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{Object.entries(skills).map(([category, items], i) => <Reveal key={category} delay={i * .06}><div className="h-full rounded-3xl border border-white/10 bg-white/[.045] p-6 transition hover:border-cyan-300/30 hover:bg-white/[.07]"><div className="mb-8 flex items-center justify-between"><span className="grid h-10 w-10 place-items-center rounded-xl bg-white/10 text-cyan-300">{i === 0 ? <Code2 size={19}/> : i === 1 ? <Zap size={19}/> : i === 2 ? <Palette size={19}/> : <Terminal size={19}/>}</span><span className="text-xs text-white/30">0{i + 1}</span></div><h3 className="font-semibold">{category}</h3><ul className="mt-5 space-y-3">{items.map(item => <li key={item} className="flex items-center gap-2 text-sm text-white/50"><span className="h-1 w-1 rounded-full bg-cyan-300"/>{item}</li>)}</ul></div></Reveal>)}</div></div></section>
+
+      <section id="projects" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32"><Reveal><p className="eyebrow">04 / Selected work</p><div className="mt-5 flex flex-wrap items-end justify-between gap-6"><h2 className="section-title">Selected work,<br/><span className="text-black/35 dark:text-white/35">built to matter.</span></h2><p className="max-w-xs text-sm leading-6 text-black/45 dark:text-white/45">A few systems and products where the interface had to work as hard as the business.</p></div></Reveal><div className="mt-14 grid gap-5 md:grid-cols-2">{projects.map((project, i) => <Reveal key={project.name} delay={i * .06}><article className={`group relative min-h-[320px] overflow-hidden rounded-[2rem] border border-black/[.08] bg-gradient-to-br ${project.gradient} p-7 dark:border-white/[.1] dark:bg-[#111318]`}><div className="absolute -right-12 -top-12 h-40 w-40 rounded-full border border-black/10 transition duration-500 group-hover:scale-150 dark:border-white/10"/><div className="relative flex h-full flex-col justify-between"><div><div className="flex items-center justify-between"><span className="font-mono text-xs text-black/35 dark:text-white/35">/{project.number}</span><span className="rounded-full border border-black/10 px-3 py-1 text-[10px] uppercase tracking-[.15em] text-black/45 dark:border-white/10 dark:text-white/45">Case study</span></div><h3 className="mt-16 text-2xl font-semibold tracking-tight">{project.name}</h3><p className="mt-1 text-sm font-medium text-cyan-600 dark:text-cyan-300">{project.type}</p><p className="mt-4 max-w-md text-sm leading-6 text-black/50 dark:text-white/50">{project.description}</p></div><div className="mt-8 flex items-center justify-between gap-3"><div className="flex flex-wrap gap-2">{project.tags.map(tag => <span key={tag} className="rounded-full bg-white/60 px-2.5 py-1 text-[11px] text-black/55 dark:bg-white/10 dark:text-white/55">{tag}</span>)}</div><span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#111318] text-white transition group-hover:rotate-45 dark:bg-white dark:text-[#111318]"><ArrowUpRight size={17}/></span></div></div></article></Reveal>)}</div></section>
+
+      <section className="border-y border-black/[.06] bg-white/55 dark:border-white/[.07] dark:bg-white/[.02]"><div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-24"><div className="grid grid-cols-2 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">{metrics.map(([value, label], i) => <Reveal key={label} delay={i * .05}><div className="border-l border-black/10 pl-5 dark:border-white/10"><p className="text-4xl font-bold tracking-[-.06em] sm:text-5xl">{value}</p><p className="mt-2 text-xs uppercase tracking-[.13em] text-black/45 dark:text-white/45">{label}</p></div></Reveal>)}</div></div></section>
+
+      <section id="services" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32"><div className="grid gap-12 lg:grid-cols-[.7fr_1.3fr]"><Reveal><p className="eyebrow">05 / What I do</p><h2 className="section-title mt-5">Making the complex<br/><span className="text-black/35 dark:text-white/35">feel simple.</span></h2></Reveal><Reveal delay={.1}><div className="grid gap-3 sm:grid-cols-2">{services.map((service, i) => <div key={service} className="group flex items-center justify-between border-b border-black/10 py-4 dark:border-white/10"><span className="text-sm text-black/70 dark:text-white/70">{service}</span><ArrowUpRight size={16} className="text-black/25 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-cyan-500 dark:text-white/25"/></div>)}</div></Reveal></div></section>
+
+      <section className="bg-[#111318] text-white"><div className="mx-auto grid max-w-7xl gap-12 px-5 py-24 sm:px-8 lg:grid-cols-[1fr_.9fr] lg:py-32"><Reveal><p className="eyebrow text-cyan-300/70">06 / Perspective</p><Quote className="mt-10 text-cyan-300" size={35} fill="currentColor"/><blockquote className="mt-6 max-w-2xl text-2xl font-medium leading-10 tracking-tight sm:text-3xl">“Dillip brings unusual clarity to complex products. He doesn’t just ship screens — he creates systems that make the whole team move faster.”</blockquote><div className="mt-8 flex items-center gap-3"><div className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-cyan-300 to-violet-400 font-bold text-[#111318]">AM</div><div><p className="text-sm font-semibold">Ankit Mishra</p><p className="text-xs text-white/40">Engineering Lead · Walkout Tech</p></div></div></Reveal><Reveal delay={.15}><div className="rounded-[2rem] border border-white/10 bg-white/[.04] p-7"><p className="text-sm font-semibold">The stack in motion</p><p className="mt-2 text-sm leading-6 text-white/45">A practical toolkit for delivering ambitious products with confidence.</p><div className="mt-8 flex flex-wrap gap-3">{["React", "Angular", "Redux", "Tailwind", "TypeScript", "Git", "Figma", "Vite", "Axios"].map(item => <motion.span key={item} animate={{ y: [0, -5, 0] }} transition={{ duration: 2.5, repeat: Infinity, delay: Math.random() * 1.5 }} className="rounded-xl border border-white/10 bg-white/[.06] px-4 py-3 text-sm text-white/70">{item}</motion.span>)}</div></div></Reveal></div></section>
+
+      <section id="contact" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32"><div className="grid gap-14 lg:grid-cols-[.8fr_1.2fr]"><Reveal><p className="eyebrow">07 / Contact</p><h2 className="section-title mt-5">Have a complex<br/><span className="text-black/35 dark:text-white/35">idea to ship?</span></h2><p className="mt-7 max-w-sm text-base leading-7 text-black/50 dark:text-white/50">Tell me about the product, the challenge, or the blank page. I’ll bring thoughtful questions and a bias for action.</p><div className="mt-10 space-y-4 text-sm text-black/60 dark:text-white/60"><p><Mail className="mr-3 inline text-cyan-500" size={17}/> dillip.sabat@gmail.com</p><p><Phone className="mr-3 inline text-cyan-500" size={17}/> +91 70081 57033</p><p><MapPin className="mr-3 inline text-cyan-500" size={17}/> Bhubaneswar, India</p></div></Reveal><Reveal delay={.1}><form onSubmit={(event) => { event.preventDefault(); setSent(true); }} className="rounded-[2rem] border border-black/[.08] bg-white/70 p-6 shadow-xl shadow-black/[.03] dark:border-white/[.09] dark:bg-white/[.04] sm:p-8"><div className="grid gap-5 sm:grid-cols-2"><label className="field">Name<input required placeholder="Your name"/></label><label className="field">Email<input required type="email" placeholder="you@company.com"/></label></div><label className="field mt-5">Subject<input required placeholder="What are we building?"/></label><label className="field mt-5">Message<textarea required rows={5} placeholder="A little about your project..."/></label><button className="mt-6 w-full rounded-full bg-[#111318] px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-xl dark:bg-white dark:text-[#111318]">{sent ? <><Check className="mr-2 inline" size={16}/> Message ready to send</> : <><Send className="mr-2 inline" size={16}/> Send inquiry</>}</button>{sent && <p className="mt-3 text-center text-xs text-cyan-600 dark:text-cyan-300">Thanks — I’ll get back to you shortly.</p>}</form></Reveal></div></section>
+    </main>
+    <footer className="border-t border-black/[.07] dark:border-white/[.08]"><div className="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-8 text-sm text-black/45 dark:text-white/45 sm:px-8 md:flex-row md:items-center md:justify-between"><p>© {year} Dillip Kumar Sabat. Built with intention.</p><div className="flex items-center gap-5"><a href="https://github.com" target="_blank" rel="noreferrer" className="transition hover:text-black dark:hover:text-white"><Github size={17}/></a><a href="https://linkedin.com" target="_blank" rel="noreferrer" className="transition hover:text-black dark:hover:text-white"><Linkedin size={17}/></a><button onClick={resume} className="flex items-center gap-2 transition hover:text-black dark:hover:text-white"><Download size={15}/> Resume</button></div></div></footer>
+  </div>;
 }
