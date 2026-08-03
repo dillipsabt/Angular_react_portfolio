@@ -1,0 +1,98 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Length 2552 >>
+stream
+BT
+/F2 24 Tf 48 760 Td (DILLIP KUMAR SABAT) Tj
+/F1 11 Tf 48 733 Td (Frontend Developer  |  React.js  |  Angular  |  TypeScript) Tj
+/F1 9 Tf 48 716 Td (dillipsabat442@gmail.com  |  +91 6372750177  |  linkedin.com/in/dillip-sabat-803247219) Tj
+/F2 13 Tf 48 699 Td (PROFESSIONAL SUMMARY) Tj
+/F1 9 Tf 48 672 Td (Frontend Developer with 4+ years of experience building scalable enterprise web applications using) Tj
+/F1 9 Tf 48 655 Td (React.js, Angular \(12-16\), TypeScript, JavaScript, Redux Toolkit, NgRx, Tailwind CSS, and RESTful APIs.) Tj
+/F1 9 Tf 48 638 Td (Experienced in School ERP, HRMS, Loan Processing, Document Management, and Multi-Tenant SaaS) Tj
+/F1 9 Tf 48 621 Td (applications with JWT Authentication, RBAC, REST API Integration, Responsive UI, and Performance Optimization.) Tj
+/F2 13 Tf 48 604 Td (TECHNICAL SKILLS) Tj
+/F1 9 Tf 48 577 Td (Frontend: React.js, Angular \(12-16\), TypeScript, JavaScript ES6+, HTML5, CSS3, Tailwind CSS, Bootstrap,) Tj
+/F1 9 Tf 48 560 Td (React Hooks, React Router, Responsive Design, Lazy Loading, Angular Material) Tj
+/F1 9 Tf 48 543 Td (State: Redux Toolkit, NgRx, RxJS, Context API    |    APIs: REST, Axios, Axios Interceptors) Tj
+/F1 9 Tf 48 526 Td (Security: JWT Authentication, RBAC, Protected Routes, Multi-Tenant Architecture) Tj
+/F1 9 Tf 48 509 Td (Databases: MySQL, MongoDB    |    Tools: Git, GitHub, Bitbucket, Jira, Vite, Postman, Figma) Tj
+/F2 13 Tf 48 492 Td (WORK EXPERIENCE) Tj
+/F2 11 Tf 48 465 Td (Walkout Tech  |  Software Engineer  |  03/2026 - Present) Tj
+/F2 10 Tf 48 448 Td (Project: School Management System \(SSMS\)) Tj
+/F1 9 Tf 48 431 Td (Enterprise-grade React.js multi-tenant School ERP for academic, administrative, examination, attendance,) Tj
+/F1 9 Tf 48 414 Td (fee, and student lifecycle operations across multiple schools.) Tj
+/F1 9 Tf 48 397 Td (- Developed 25+ enterprise modules and 40+ reusable React components.) Tj
+/F1 9 Tf 48 380 Td (- Integrated 100+ REST APIs using Axios, Redux Toolkit, React Hooks, and React Router.) Tj
+/F1 9 Tf 48 363 Td (- Implemented JWT Authentication, RBAC, responsive Figma-to-Tailwind interfaces, and production support.) Tj
+/F2 10 Tf 48 346 Td (Multi-Tenant Implementation) Tj
+/F1 9 Tf 48 329 Td (- Built subdomain tenant identification, dynamic API base URLs, and Axios X-Tenant-ID injection.) Tj
+/F1 9 Tf 48 312 Td (- Configured environment-specific deployments and secure tenant isolation.) Tj
+/F1 9 Tf 48 295 Td (Technologies: React.js, Redux Toolkit, JavaScript, TypeScript, Tailwind CSS, Axios, REST APIs, JWT, Vite, Git) Tj
+ET
+endstream
+endobj
+3 0 obj
+<< /Length 2141 >>
+stream
+BT
+/F2 13 Tf 48 760 Td (WORK EXPERIENCE \(CONTINUED\)) Tj
+/F2 11 Tf 48 733 Td (Brain Technosys Pvt. Ltd.  |  Software Engineer  |  09/2024 - 02/2026) Tj
+/F2 10 Tf 48 716 Td (SentriDocs - Enterprise Loan Processing and Document Management) Tj
+/F1 9 Tf 48 699 Td (- Developed borrower and co-borrower modules, FNMA XML reports, modular Angular components, and REST integrations.) Tj
+/F1 9 Tf 48 682 Td (- Improved performance and participated in production support.) Tj
+/F1 9 Tf 48 665 Td (Technologies: Angular 16, TypeScript, Angular Material, NgRx, RxJS, REST APIs) Tj
+/F2 10 Tf 48 648 Td (Shutter Management - React tenant and sub-tenant pricing platform) Tj
+/F1 9 Tf 48 631 Td (- Developed dynamic pricing and calculation modules, payment gateway integrations, and responsive interfaces.) Tj
+/F1 9 Tf 48 614 Td (- Optimized frontend responsiveness and performance.) Tj
+/F1 9 Tf 48 597 Td (Technologies: React.js, Redux Toolkit, Tailwind CSS, REST APIs, Git) Tj
+/F2 11 Tf 48 580 Td (Sparity  |  Associate Software Engineer  |  02/2022 - 07/2024) Tj
+/F2 10 Tf 48 563 Td (Tax Litigation Management System) Tj
+/F1 9 Tf 48 546 Td (- Built reusable Angular components, integrated REST APIs, and supported Agile Scrum delivery.) Tj
+/F2 10 Tf 48 529 Td (Seva Bharathi Blood Donation System) Tj
+/F1 9 Tf 48 512 Td (- Developed donor registration, blood requests, donation records, responsive UI, and REST integrations.) Tj
+/F1 9 Tf 48 495 Td (Technologies: Angular, TypeScript, JavaScript, HTML5, CSS3, Bootstrap, REST APIs) Tj
+/F2 13 Tf 48 478 Td (PROFESSIONAL ACHIEVEMENTS) Tj
+/F1 9 Tf 48 451 Td (- Developed 30+ enterprise modules across School ERP, HRMS, Loan Processing, and Document Management.) Tj
+/F1 9 Tf 48 434 Td (- Built 40+ reusable components and integrated 100+ REST APIs.) Tj
+/F1 9 Tf 48 417 Td (- Implemented Multi-Tenant Architecture, JWT Authentication, Protected Routes, and RBAC.) Tj
+/F2 13 Tf 48 400 Td (EDUCATION) Tj
+/F1 10 Tf 48 373 Td (Master of Computer Applications \(MCA\) - Roland Institute of Technology, 2021) Tj
+/F1 10 Tf 48 356 Td (Bachelor of Science \(Computer Science\) - Science College Hinjilicut, 2018) Tj
+ET
+endstream
+endobj
+4 0 obj
+<< /Type /Pages /Kids [4 0 R 6 0 R] /Count 2 >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 1 0 R >>
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 2 0 R >>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000002662 00000 n 
+0000004855 00000 n 
+0000004918 00000 n 
+0000004988 00000 n 
+0000005063 00000 n 
+0000005199 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+5335
+%%EOF
