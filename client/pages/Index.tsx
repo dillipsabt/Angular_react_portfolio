@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import { jsPDF } from "jspdf";
 import {
   ArrowUpRight, Check, ChevronDown, Code2, Download, Github, Linkedin,
   Mail, MapPin, Menu, Moon, Palette, Phone, Quote, Send, Sparkles,
@@ -7,7 +8,6 @@ import {
 } from "lucide-react";
 
 const portrait = "https://images.pexels.com/photos/6804094/pexels-photo-6804094.jpeg";
-const resumeUrl = "/Dillip-Kumar-Sabat-Resume.pdf";
 const roles = ["Frontend Developer", "React.js Developer", "Angular Developer", "Software Engineer", "UI Engineer"];
 const nav = ["About", "Experience", "Skills", "Projects", "Education", "Contact"];
 const skills = {
@@ -47,7 +47,71 @@ export default function Index() {
   useEffect(() => { const root = document.documentElement; root.classList.toggle("dark", theme === "dark" || (theme === "system" && matchMedia("(prefers-color-scheme: dark)").matches)); }, [theme]);
   const year = useMemo(() => new Date().getFullYear(), []);
   const scroll = (id: string) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setMenu(false); };
-  const resume = () => { const link = document.createElement("a"); link.href = resumeUrl; link.download = "Dillip-Kumar-Sabat-Resume.pdf"; link.click(); };
+  const resume = () => {
+    const doc = new jsPDF({ unit: "mm", format: "a4" });
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const margin = 17;
+    const contentWidth = pageWidth - margin * 2;
+    let y = 18;
+    const addText = (text: string, size = 9.5, bold = false, gap = 5) => {
+      doc.setFont("helvetica", bold ? "bold" : "normal");
+      doc.setFontSize(size);
+      const lines = doc.splitTextToSize(text, contentWidth) as string[];
+      doc.text(lines, margin, y);
+      y += lines.length * (size * 0.45) + gap;
+    };
+    const heading = (text: string) => { y += 3; doc.setDrawColor(20, 184, 166); doc.setLineWidth(.7); doc.line(margin, y, pageWidth - margin, y); y += 6; addText(text, 11, true, 4); };
+    const bullet = (text: string) => addText(`• ${text}`, 9.2, false, 2.5);
+    doc.setTextColor(17, 19, 24);
+    addText("DILLIP KUMAR SABAT", 20, true, 2);
+    addText("Frontend Developer  |  React.js  |  Angular  |  TypeScript", 10.5, false, 2);
+    addText("dillipsabat442@gmail.com  |  +91 6372750177  |  linkedin.com/in/dillip-sabat-803247219", 8.5, false, 4);
+    heading("PROFESSIONAL SUMMARY");
+    addText("Frontend Developer with 4+ years of experience building scalable enterprise web applications using React.js, Angular (12–16), TypeScript, JavaScript (ES6+), Redux Toolkit, NgRx, Tailwind CSS, and RESTful APIs. Experienced in developing School ERP, HRMS, Loan Processing, Document Management, and Multi-Tenant SaaS applications with JWT Authentication, Role-Based Access Control (RBAC), responsive UI development, and performance optimization.");
+    heading("TECHNICAL SKILLS");
+    addText("Frontend Technologies: React.js, Angular (12–16), TypeScript, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Bootstrap, Angular Material, React Hooks, React Router, Responsive Design, Lazy Loading");
+    addText("State Management: Redux Toolkit, NgRx, RxJS, Context API");
+    addText("Backend & APIs: REST APIs, Axios, Axios Interceptors, API Integration");
+    addText("Authentication & Security: JWT Authentication, Role-Based Access Control (RBAC), Protected Routes, Multi-Tenant Architecture");
+    addText("Databases: MySQL, MongoDB  |  Tools: Git, GitHub, Bitbucket, Jira, Vite, Postman, Figma");
+    heading("WORK EXPERIENCE");
+    addText("Walkout Tech — Software Engineer — 03/2026 to Present", 10, true, 2);
+    addText("Project: School Management System (SSMS)", 9.5, true, 2);
+    bullet("Developed 25+ enterprise modules including Student Admission, Teacher Management, Staff, Attendance, Homework, Timetable, Examination, Fees, Leave Management, Reimbursements, and Bulk Upload.");
+    bullet("Built 40+ reusable React components and integrated 100+ REST APIs using Axios and Redux Toolkit.");
+    bullet("Implemented JWT Authentication, RBAC, React Router, and responsive Figma-to-Tailwind interfaces.");
+    bullet("Designed subdomain-based multi-tenant architecture with dynamic API base URLs, Axios X-Tenant-ID interceptors, tenant isolation, and environment-specific deployments.");
+    addText("Technologies: React.js, Redux Toolkit, JavaScript, TypeScript, Tailwind CSS, Axios, REST APIs, React Router, JWT, Vite, Git, Postman", 9, false, 3);
+    doc.addPage(); y = 18;
+    doc.setTextColor(17, 19, 24);
+    addText("DILLIP KUMAR SABAT — WORK EXPERIENCE", 15, true, 6);
+    addText("Brain Technosys Pvt. Ltd. — Software Engineer — 09/2024 to 02/2026", 10, true, 2);
+    addText("Project: SentriDocs — Enterprise Loan Processing and Document Management", 9.5, true, 2);
+    bullet("Developed borrower and co-borrower management modules and FNMA XML reports.");
+    bullet("Built modular Angular components and integrated backend REST APIs using Angular Material, NgRx, RxJS, and TypeScript.");
+    bullet("Improved application performance and participated in production support.");
+    addText("Project: Shutter Management — React tenant and sub-tenant pricing platform", 9.5, true, 2);
+    bullet("Developed dynamic pricing and pricing calculation modules.");
+    bullet("Integrated payment gateway and REST APIs and built responsive React interfaces.");
+    bullet("Optimized application responsiveness and frontend performance.");
+    addText("Technologies: Angular 16, TypeScript, Angular Material, NgRx, RxJS, React.js, Redux Toolkit, Tailwind CSS, REST APIs, Git", 9, false, 4);
+    addText("Sparity — Associate Software Engineer — 02/2022 to 07/2024", 10, true, 2);
+    addText("Projects: Tax Litigation Management System and Seva Bharathi Blood Donation System", 9.5, true, 2);
+    bullet("Developed scalable Angular web applications using reusable components and integrated REST APIs.");
+    bullet("Built tax litigation case management, legal document, and case tracking workflows.");
+    bullet("Developed donor registration, blood requests, donation records, and responsive UI.");
+    addText("Technologies: Angular, TypeScript, JavaScript, HTML5, CSS3, Bootstrap, REST APIs", 9, false, 4);
+    heading("PROFESSIONAL ACHIEVEMENTS");
+    bullet("Developed 30+ enterprise modules across School ERP, HRMS, Loan Processing, and Document Management applications.");
+    bullet("Built 40+ reusable components and integrated 100+ REST APIs.");
+    bullet("Implemented Multi-Tenant Architecture, JWT Authentication, Protected Routes, and RBAC.");
+    bullet("Optimized application performance through efficient state management and reusable architecture.");
+    bullet("Delivered responsive enterprise applications in Agile Scrum environments.");
+    heading("EDUCATION");
+    addText("Master of Computer Applications (MCA) — Roland Institute of Technology — 2021", 9.5, false, 3);
+    addText("Bachelor of Science (Computer Science) — Science College Hinjilicut — 2018", 9.5, false, 3);
+    doc.save("Dillip-Kumar-Sabat-Resume.pdf");
+  };
   return <div className="min-h-screen overflow-hidden bg-[#f7f8fa] text-[#111318] transition-colors duration-500 dark:bg-[#08090b] dark:text-white">
     <div className="pointer-events-none fixed inset-0 -z-0 opacity-70 dark:opacity-100"><div className="absolute -left-40 top-0 h-[520px] w-[520px] rounded-full bg-cyan-200/30 blur-[130px] dark:bg-cyan-500/10"/><div className="absolute right-[-180px] top-[35%] h-[500px] w-[500px] rounded-full bg-violet-200/30 blur-[140px] dark:bg-violet-600/10"/></div>
     <header className="fixed inset-x-0 top-0 z-50 border-b border-black/[.06] bg-white/75 backdrop-blur-xl dark:border-white/[.08] dark:bg-[#08090b]/75"><div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 sm:px-8">
