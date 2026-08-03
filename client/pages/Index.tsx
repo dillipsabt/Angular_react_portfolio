@@ -6,7 +6,7 @@ import {
   Sun, Terminal, X, Zap,
 } from "lucide-react";
 
-const portrait = "https://images.pexels.com/photos/6804094/pexels-photo-6804094.jpeg";
+const portrait = "https://cdn.builder.io/api/v1/image/assets%2Fde18b7959f8d4600aae2652b33451432%2F890eca25b8d2444c9ff2419db2d0933d?format=webp&width=800&height=1200";
 const roles = ["Frontend Developer", "React.js Developer", "Angular Developer", "Software Engineer", "UI Engineer"];
 const nav = ["About", "Experience", "Skills", "Projects", "Education", "Contact"];
 const skills = {
