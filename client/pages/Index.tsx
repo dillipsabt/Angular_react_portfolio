@@ -67,7 +67,7 @@ export default function Index() {
     addText("Frontend Developer  |  React.js  |  Angular  |  TypeScript", 10.5, false, 2);
     addText("dillipsabat442@gmail.com  |  +91 6372750177  |  linkedin.com/in/dillip-sabat-803247219", 8.5, false, 4);
     heading("PROFESSIONAL SUMMARY");
-    addText("Frontend Developer with 4+ years of experience building scalable enterprise web applications using React.js, Angular (12–16), TypeScript, JavaScript (ES6+), Redux Toolkit, NgRx, Tailwind CSS, and RESTful APIs. Experienced in developing School ERP, HRMS, Loan Processing, Document Management, and Multi-Tenant SaaS applications with JWT Authentication, Role-Based Access Control (RBAC), responsive UI development, and performance optimization.");
+    addText("Frontend Developer with 4+ years of experience in building scalable enterprise web applications using React.js, Angular (12–16), TypeScript, JavaScript, Redux Toolkit, NgRx, Tailwind CSS, and RESTful APIs. Experienced in developing School ERP, HRMS, Loan Processing, Document Management, and Multi-Tenant SaaS applications with expertise in JWT Authentication, RBAC, REST API Integration, Responsive UI Development, and Performance Optimization. Passionate about building reusable, scalable, and production-ready applications while collaborating with Agile teams to deliver high-quality software.");
     heading("TECHNICAL SKILLS");
     addText("Frontend Technologies: React.js, Angular (12–16), TypeScript, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Bootstrap, Angular Material, React Hooks, React Router, Responsive Design, Lazy Loading");
     addText("State Management: Redux Toolkit, NgRx, RxJS, Context API");
@@ -79,8 +79,17 @@ export default function Index() {
     addText("Project: School Management System (SSMS)", 9.5, true, 2);
     bullet("Developed 25+ enterprise modules including Student Admission, Teacher Management, Staff, Attendance, Homework, Timetable, Examination, Fees, Leave Management, Reimbursements, and Bulk Upload.");
     bullet("Built 40+ reusable React components and integrated 100+ REST APIs using Axios and Redux Toolkit.");
-    bullet("Implemented JWT Authentication, RBAC, React Router, and responsive Figma-to-Tailwind interfaces.");
-    bullet("Designed subdomain-based multi-tenant architecture with dynamic API base URLs, Axios X-Tenant-ID interceptors, tenant isolation, and environment-specific deployments.");
+    bullet("Implemented React Hooks, React Router, and integrated 100+ REST APIs using Axios and Redux Toolkit.");
+    bullet("Implemented JWT Authentication and RBAC, improving application security across multiple enterprise modules.");
+    bullet("Designed responsive, pixel-perfect user interfaces from Figma using Tailwind CSS.");
+    bullet("Optimized Redux state management, reducing unnecessary API calls and improving application performance.");
+    bullet("Collaborated with backend teams to integrate APIs, resolve issues, and deliver production-ready features.");
+    bullet("Resolved production issues, improving application stability and reducing deployment defects.");
+    addText("Multi-Tenant Implementation", 9.5, true, 2);
+    bullet("Designed and implemented scalable Multi-Tenant Architecture supporting multiple organizations through a single application codebase.");
+    bullet("Implemented dynamic tenant identification using subdomain-based routing and dynamic API base URLs.");
+    bullet("Implemented Axios Interceptors for automatic X-Tenant-ID header injection across all API requests.");
+    bullet("Configured environment-specific deployments for Development, Testing, and Production and ensured secure tenant isolation.");
     addText("Technologies: React.js, Redux Toolkit, JavaScript, TypeScript, Tailwind CSS, Axios, REST APIs, React Router, JWT, Vite, Git, Postman", 9, false, 3);
     doc.addPage(); y = 18;
     doc.setTextColor(17, 19, 24);
