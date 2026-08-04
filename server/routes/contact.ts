@@ -35,6 +35,42 @@ function getMailer() {
   return nodemailer.createTransport({ host, port, secure: port === 465, auth: { user, pass } });
 }
 
+async function sendNotification(inquiry: z.infer<typeof contactSchema>) {
+  const recipient = process.env.CONTACT_EMAIL ?? "dillipsabat442@gmail.com";
+  const subject = `New opportunity from ${inquiry.company}${inquiry.role ? ` — ${inquiry.role}` : ""}`;
+  const text = [
+    `Company: ${inquiry.company}`,
+    `Contact: ${inquiry.contactName}`,
+    `Email: ${inquiry.email}`,
+    `Website: ${inquiry.companyWebsite || "Not provided"}`,
+    `Role: ${inquiry.role || "Not provided"}`,
+    "",
+    "Job Description:",
+    inquiry.jobDescription,
+    "",
+    "Message:",
+    inquiry.message || "Not provided",
+  ].join("\\n");
+  const resendApiKey = process.env.RESEND_API_KEY;
+  if (resendApiKey) {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${resendApiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: process.env.RESEND_FROM ?? "onboarding@resend.dev",
+        to: [recipient],
+        reply_to: inquiry.email,
+        subject,
+        text,
+      }),
+    });
+    if (!response.ok) throw new Error(`Resend request failed with status ${response.status}`);
+    return;
+  }
+  const sender = process.env.SMTP_FROM ?? process.env.SMTP_USER;
+  await getMailer().sendMail({ from: sender, to: recipient, replyTo: inquiry.email, subject, text });
+}
+
 export const handleContactInquiry: RequestHandler = async (req, res) => {
   const parsed = contactSchema.safeParse(req.body);
   if (!parsed.success) {
@@ -47,27 +83,7 @@ export const handleContactInquiry: RequestHandler = async (req, res) => {
     const database = await getDatabase();
     await database.collection("contact_inquiries").insertOne(inquiry);
 
-    const recipient = process.env.CONTACT_EMAIL ?? "dillipsabat442@gmail.com";
-    const sender = process.env.SMTP_FROM ?? process.env.SMTP_USER;
-    await getMailer().sendMail({
-      from: sender,
-      to: recipient,
-      replyTo: inquiry.email,
-      subject: `New opportunity from ${inquiry.company}${inquiry.role ? ` — ${inquiry.role}` : ""}`,
-      text: [
-        `Company: ${inquiry.company}`,
-        `Contact: ${inquiry.contactName}`,
-        `Email: ${inquiry.email}`,
-        `Website: ${inquiry.companyWebsite || "Not provided"}`,
-        `Role: ${inquiry.role || "Not provided"}`,
-        "",
-        "Job Description:",
-        inquiry.jobDescription,
-        "",
-        "Message:",
-        inquiry.message || "Not provided",
-      ].join("\n"),
-    });
+    await sendNotification(parsed.data);
 
     res.status(201).json({ message: "Thanks. Your opportunity has been sent successfully." });
   } catch (error) {
