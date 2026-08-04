@@ -8,7 +8,7 @@ import {
 
 const portrait = "https://cdn.builder.io/api/v1/image/assets%2Fde18b7959f8d4600aae2652b33451432%2F890eca25b8d2444c9ff2419db2d0933d?format=webp&width=800&height=1200";
 const roles = ["Frontend Developer", "React.js Developer", "Angular Developer", "Software Engineer", "UI Engineer"];
-const nav = ["About", "Experience", "Skills", "Projects", "Education", "Contact"];
+const nav = ["About", "Skills", "Experience", "Projects", "Education", "Contact"];
 const skillLevels = [94, 88, 90, 86, 82, 90];
 const skills = {
   "Frontend Technologies": ["React.js", "Angular (12–16)", "TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap", "Angular Material", "React Hooks", "React Router", "Responsive Design", "Lazy Loading"],
