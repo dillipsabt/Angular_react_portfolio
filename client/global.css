@@ -85,3 +85,116 @@
   #projects article [class*="bg-white"][class*="rounded-full"] { display: none; }
   main > section:first-of-type > div:last-child > div:last-child { display: none; }
 }
+
+body {
+  background-color: #060611;
+  color: #f7f7ff;
+  background-image:
+    radial-gradient(circle at 74% 20%, rgba(55, 111, 255, .14), transparent 26rem),
+    radial-gradient(circle at 12% 75%, rgba(116, 63, 255, .1), transparent 30rem),
+    radial-gradient(circle at 20% 12%, rgba(255, 255, 255, .8) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 68% 38%, rgba(255, 255, 255, .6) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 91% 72%, rgba(145, 176, 255, .7) 0 1px, transparent 1.5px);
+  background-size: auto, auto, 180px 160px, 260px 230px, 310px 280px;
+  background-attachment: fixed;
+}
+
+header.fixed {
+  border-color: rgba(255, 255, 255, .08) !important;
+  background: rgba(5, 5, 14, .72) !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .03);
+}
+header.fixed > div { height: 64px; max-width: 1240px; }
+header nav {
+  border-color: rgba(255, 255, 255, .08) !important;
+  background: rgba(255, 255, 255, .035) !important;
+}
+header nav button { color: rgba(255, 255, 255, .58) !important; font-size: 11px; }
+header nav button:hover, header nav button.bg-white { color: #fff !important; }
+header nav button.bg-white { background: rgba(255, 255, 255, .1) !important; }
+
+main#top > section:first-of-type {
+  min-height: 700px;
+  padding-top: 120px;
+  padding-bottom: 90px;
+}
+main#top > section:first-of-type > div:first-child { max-width: 620px; }
+main#top > section:first-of-type h1 {
+  font-size: clamp(3rem, 6vw, 5.6rem);
+  line-height: .98;
+  letter-spacing: -.07em;
+}
+main#top > section:first-of-type h1 span,
+.section-title span {
+  background-image: linear-gradient(100deg, #27bfff, #6675ff 55%, #b15bff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+main#top > section:first-of-type p { color: rgba(236, 239, 255, .62); }
+main#top > section:first-of-type .rounded-full.bg-gradient-to-r { background-image: linear-gradient(100deg, #22c8ff, #765bff) !important; }
+main#top > section:first-of-type > div:last-child > div:first-child {
+  border-color: rgba(116, 146, 255, .24);
+  background: linear-gradient(145deg, rgba(24, 35, 65, .9), rgba(12, 15, 32, .75));
+  box-shadow: 0 0 80px rgba(64, 93, 255, .2), inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+
+main#top > section:not(:first-of-type) {
+  border-color: rgba(255, 255, 255, .07) !important;
+  background: rgba(5, 5, 14, .38) !important;
+}
+main#top > section:not(:first-of-type) > div {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+main#top section[id] > div:first-child > .eyebrow,
+main#top section[id] .eyebrow {
+  color: #6f82ff !important;
+  justify-content: center;
+}
+main#top section[id] .eyebrow::before { display: none; }
+main#top section[id] .section-title {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: #f5f4ff;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  letter-spacing: -.055em;
+}
+main#top section[id] .section-title br { display: none; }
+main#top section[id] > div:first-child,
+main#top section[id] > div > div:first-child { text-align: center; }
+
+#about > div { display: block; max-width: 850px; }
+#about > div > div:last-child { margin: 35px auto 0; }
+#about > div > div:last-child > p { font-size: 15px; line-height: 1.8; color: rgba(236, 239, 255, .62); }
+#about > div > div:last-child .grid > div,
+#education > div > div:last-child > div > div,
+#contact form,
+#contact form > div { border-color: rgba(255, 255, 255, .1) !important; background: rgba(255, 255, 255, .045) !important; }
+
+#skills { background: transparent !important; }
+#skills > div > .relative { margin-top: 45px; }
+#skills .group > div,
+#skills .group { border-color: rgba(121, 137, 255, .18) !important; background: linear-gradient(145deg, rgba(25, 27, 48, .8), rgba(12, 13, 26, .72)) !important; box-shadow: 0 18px 50px rgba(0, 0, 0, .2); }
+#skills .group h3 { color: #83a7ff; }
+#skills .group li { border-color: rgba(255, 255, 255, .1); background: rgba(255, 255, 255, .045); color: rgba(255, 255, 255, .72); }
+
+#experience > div > div:last-child > div,
+#projects article,
+#education > div > div:last-child > div > div,
+#contact form { border-color: rgba(255, 255, 255, .1) !important; background: rgba(20, 20, 32, .72) !important; }
+#experience > div > div:last-child { margin-top: 50px; }
+#projects > div > div:last-child { margin-top: 45px; }
+#projects article h3 { margin-top: 35px; }
+#projects article p, #experience li, #contact p { color: rgba(236, 239, 255, .58); }
+
+footer { border-color: rgba(255, 255, 255, .08) !important; background: rgba(5, 5, 14, .55); }
+footer p, footer a, footer button { color: rgba(236, 239, 255, .55); }
+
+@media (max-width: 767px) {
+  header.fixed > div { height: 60px; }
+  main#top > section:first-of-type { min-height: auto; padding-top: 110px; }
+  main#top > section:not(:first-of-type) > div { padding-top: 75px; padding-bottom: 75px; }
+}
