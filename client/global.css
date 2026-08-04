@@ -193,6 +193,37 @@ main#top section[id] > div > div:first-child { text-align: center; }
 footer { border-color: rgba(255, 255, 255, .08) !important; background: rgba(5, 5, 14, .55); }
 footer p, footer a, footer button { color: rgba(236, 239, 255, .55); }
 
+#root > div.min-h-screen {
+  background: #05050d !important;
+  color: #f8f8ff !important;
+  background-image:
+    radial-gradient(circle at 78% 18%, rgba(54, 92, 255, .2), transparent 28rem),
+    radial-gradient(circle at 10% 68%, rgba(116, 49, 255, .13), transparent 30rem),
+    radial-gradient(circle at 16% 16%, rgba(255, 255, 255, .9) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 61% 45%, rgba(255, 255, 255, .65) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 91% 76%, rgba(163, 190, 255, .8) 0 1px, transparent 1.5px) !important;
+  background-size: auto, auto, 170px 150px, 250px 220px, 330px 290px !important;
+}
+#root > div.min-h-screen > div:first-child { opacity: 0 !important; }
+#root > div.min-h-screen main { color: #f8f8ff !important; }
+#root > div.min-h-screen header { background: rgba(5, 5, 14, .84) !important; }
+#root > div.min-h-screen header span,
+#root > div.min-h-screen header button,
+#root > div.min-h-screen header nav button { color: rgba(255, 255, 255, .72) !important; }
+#root > div.min-h-screen header nav button.bg-white { background: rgba(255, 255, 255, .12) !important; color: #fff !important; }
+#root > div.min-h-screen main > section { background: transparent !important; border-color: rgba(255, 255, 255, .08) !important; }
+#root > div.min-h-screen main > section:first-child { padding-top: 128px; }
+#root > div.min-h-screen main > section:first-child h1 { color: #f8f8ff !important; }
+#root > div.min-h-screen main > section:first-child p,
+#root > div.min-h-screen main > section p { color: rgba(231, 234, 255, .63) !important; }
+#root > div.min-h-screen main > section:first-child > div:last-child > div:first-child { background: linear-gradient(145deg, rgba(23, 32, 69, .92), rgba(13, 13, 29, .86)) !important; }
+#root > div.min-h-screen main section .section-title { color: #f8f8ff !important; }
+#root > div.min-h-screen main section .section-title span { color: #7585ff !important; }
+#root > div.min-h-screen main article,
+#root > div.min-h-screen main section .group,
+#root > div.min-h-screen main section form { background: rgba(21, 21, 34, .78) !important; border-color: rgba(139, 151, 255, .18) !important; }
+#root > div.min-h-screen footer { background: rgba(5, 5, 14, .8) !important; }
+
 @media (max-width: 767px) {
   header.fixed > div { height: 60px; }
   main#top > section:first-of-type { min-height: auto; padding-top: 110px; }
