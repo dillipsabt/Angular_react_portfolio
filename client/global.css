@@ -104,7 +104,9 @@ header.fixed {
   background: rgba(5, 5, 14, .72) !important;
   box-shadow: 0 1px 0 rgba(255, 255, 255, .03);
 }
-header.fixed > div { height: 64px; max-width: 1240px; }
+header.fixed > div { height: 70px; max-width: 1380px; }
+header.fixed > div > button:first-child > span:first-child { height: 42px; width: 42px; border: 1px solid rgba(145, 166, 255, .28); box-shadow: 0 0 24px rgba(80, 116, 255, .22); }
+header.fixed > div > button:first-child > span:last-child { font-size: 15px; }
 header nav {
   border-color: rgba(255, 255, 255, .08) !important;
   background: rgba(255, 255, 255, .035) !important;
@@ -146,8 +148,11 @@ main#top > section:not(:first-of-type) {
   padding-bottom: 0 !important;
 }
 main#top > section:not(:first-of-type) > div {
-  padding-top: 64px;
-  padding-bottom: 64px;
+  max-width: 1380px;
+  padding-top: 82px;
+  padding-bottom: 82px;
+  padding-left: 32px;
+  padding-right: 32px;
 }
 main#top section[id] > div:first-child > .eyebrow,
 main#top section[id] .eyebrow {
@@ -156,12 +161,12 @@ main#top section[id] .eyebrow {
 }
 main#top section[id] .eyebrow::before { display: none; }
 main#top section[id] .section-title {
-  max-width: 800px;
+  max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
   color: #f5f4ff;
-  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-size: clamp(2.6rem, 5vw, 4.6rem);
   letter-spacing: -.055em;
 }
 main#top section[id] .section-title br { display: none; }
@@ -170,7 +175,7 @@ main#top section[id] > div > div:first-child { text-align: center; }
 
 #about > div { display: block; max-width: 850px; }
 #about > div > div:last-child { margin: 35px auto 0; }
-#about > div > div:last-child > p { font-size: 15px; line-height: 1.8; color: rgba(236, 239, 255, .62); }
+#about > div > div:last-child > p { font-size: 17px; line-height: 1.85; color: rgba(236, 239, 255, .62); }
 #about > div > div:last-child .grid > div,
 #education > div > div:last-child > div > div,
 #contact form,
@@ -231,11 +236,11 @@ footer p, footer a, footer button { color: rgba(236, 239, 255, .55); }
 #contact > div > div:first-child { text-align: left; }
 #contact > div > div:first-child > .mt-10 { display: grid; gap: 10px; margin-top: 24px; }
 #contact > div > div:first-child > .mt-10 p { margin: 0; padding: 12px 14px; border: 1px solid rgba(139, 151, 255, .14); border-radius: 12px; background: rgba(255, 255, 255, .04); }
-#contact form { padding: 22px; border-radius: 20px; }
+#contact form { padding: 30px; border-radius: 24px; min-height: 520px; }
 #contact form input, #contact form textarea { background: rgba(255, 255, 255, .045) !important; border-color: rgba(255, 255, 255, .1) !important; }
 
 @media (max-width: 767px) {
   header.fixed > div { height: 60px; }
   main#top > section:first-of-type { min-height: auto; padding-top: 110px; }
-  main#top > section:not(:first-of-type) > div { padding-top: 52px; padding-bottom: 52px; }
+  main#top > section:not(:first-of-type) > div { padding: 58px 20px; }
 }
