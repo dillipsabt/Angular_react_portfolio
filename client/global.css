@@ -143,13 +143,13 @@ main#top > section:first-of-type > div:last-child > div:first-child {
 main#top > section:not(:first-of-type) {
   border-color: rgba(255, 255, 255, .07) !important;
   background: rgba(5, 5, 14, .38) !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+  padding-top: 58px !important;
+  padding-bottom: 58px !important;
 }
 main#top > section:not(:first-of-type) > div {
   max-width: 1380px;
-  padding-top: 82px;
-  padding-bottom: 82px;
+  padding-top: 0;
+  padding-bottom: 0;
   padding-left: 32px;
   padding-right: 32px;
 }
@@ -241,5 +241,6 @@ footer p, footer a, footer button { color: rgba(236, 239, 255, .55); }
 @media (max-width: 767px) {
   header.fixed > div { height: 60px; }
   main#top > section:first-of-type { min-height: auto; padding-top: 110px; }
-  main#top > section:not(:first-of-type) > div { padding: 58px 20px; }
+  main#top > section:not(:first-of-type) { padding-top: 42px !important; padding-bottom: 42px !important; }
+  main#top > section:not(:first-of-type) > div { padding: 0 20px; }
 }
