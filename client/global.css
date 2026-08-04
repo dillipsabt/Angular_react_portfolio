@@ -227,6 +227,12 @@ footer p, footer a, footer button { color: rgba(236, 239, 255, .55); }
 #root > div.min-h-screen main section .group,
 #root > div.min-h-screen main section form { background: rgba(21, 21, 34, .78) !important; border-color: rgba(139, 151, 255, .18) !important; }
 #root > div.min-h-screen footer { background: rgba(5, 5, 14, .8) !important; }
+#contact > div { max-width: 980px; gap: 32px; align-items: center; }
+#contact > div > div:first-child { text-align: left; }
+#contact > div > div:first-child > .mt-10 { display: grid; gap: 10px; margin-top: 24px; }
+#contact > div > div:first-child > .mt-10 p { margin: 0; padding: 12px 14px; border: 1px solid rgba(139, 151, 255, .14); border-radius: 12px; background: rgba(255, 255, 255, .04); }
+#contact form { padding: 22px; border-radius: 20px; }
+#contact form input, #contact form textarea { background: rgba(255, 255, 255, .045) !important; border-color: rgba(255, 255, 255, .1) !important; }
 
 @media (max-width: 767px) {
   header.fixed > div { height: 60px; }
