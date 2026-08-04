@@ -35,6 +35,10 @@ function getMailer() {
   return nodemailer.createTransport({ host, port, secure: port === 465, auth: { user, pass } });
 }
 
+function escapeHtml(value: string) {
+  return value.replace(/[&<>\"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '\"': "&quot;", "'": "&#39;" })[character] ?? character);
+}
+
 async function sendNotification(inquiry: z.infer<typeof contactSchema>) {
   const recipient = process.env.CONTACT_EMAIL ?? "dillipsabat442@gmail.com";
   const subject = `New opportunity from ${inquiry.company}${inquiry.role ? ` — ${inquiry.role}` : ""}`;
@@ -50,7 +54,20 @@ async function sendNotification(inquiry: z.infer<typeof contactSchema>) {
     "",
     "Message:",
     inquiry.message || "Not provided",
-  ].join("\\n");
+  ].join("\n");
+  const html = `
+    <div style="font-family:Arial,sans-serif;line-height:1.6;color:#17202a;max-width:680px">
+      <h2 style="margin:0 0 20px;color:#0f766e">New Job Inquiry</h2>
+      <p><strong>Company:</strong> ${escapeHtml(inquiry.company)}</p>
+      <p><strong>Contact:</strong> ${escapeHtml(inquiry.contactName)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(inquiry.email)}</p>
+      <p><strong>Website:</strong> ${escapeHtml(inquiry.companyWebsite || "Not provided")}</p>
+      <p><strong>Role:</strong> ${escapeHtml(inquiry.role || "Not provided")}</p>
+      <h3 style="margin:24px 0 8px">Job Description</h3>
+      <div style="white-space:pre-wrap;background:#f4f7f8;padding:14px;border-radius:8px">${escapeHtml(inquiry.jobDescription)}</div>
+      <h3 style="margin:24px 0 8px">Message</h3>
+      <div style="white-space:pre-wrap;background:#f4f7f8;padding:14px;border-radius:8px">${escapeHtml(inquiry.message || "Not provided")}</div>
+    </div>`;
   const resendApiKey = process.env.RESEND_API_KEY;
   if (resendApiKey) {
     const response = await fetch("https://api.resend.com/emails", {
@@ -62,13 +79,14 @@ async function sendNotification(inquiry: z.infer<typeof contactSchema>) {
         reply_to: inquiry.email,
         subject,
         text,
+        html,
       }),
     });
     if (!response.ok) throw new Error(`Resend request failed with status ${response.status}`);
     return;
   }
   const sender = process.env.SMTP_FROM ?? process.env.SMTP_USER;
-  await getMailer().sendMail({ from: sender, to: recipient, replyTo: inquiry.email, subject, text });
+  await getMailer().sendMail({ from: sender, to: recipient, replyTo: inquiry.email, subject, text, html });
 }
 
 export const handleContactInquiry: RequestHandler = async (req, res) => {
