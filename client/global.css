@@ -66,7 +66,8 @@
   }
   * { @apply border-border; }
   html { scroll-behavior: smooth; }
-  body { @apply bg-background text-foreground; font-family: "DM Sans", sans-serif; }
+  body { @apply bg-background text-foreground; font-family: "DM Sans", sans-serif; background-image: radial-gradient(circle at 10% 0%, hsl(187 82% 55% / .08), transparent 28rem), radial-gradient(circle at 90% 18%, hsl(265 80% 65% / .07), transparent 30rem); }
+  ::selection { background: hsl(187 82% 55% / .3); color: hsl(220 18% 8%); }
   h1, h2, h3, h4, h5, h6 { font-family: "Space Grotesk", sans-serif; }
   :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) { overflow-wrap: anywhere; word-break: break-word; }
   input, textarea { outline: none; }
