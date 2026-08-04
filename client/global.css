@@ -83,4 +83,5 @@
   .lucide-arrow-up-right { display: none; }
   #projects article svg { display: none; }
   #projects article [class*="bg-white"][class*="rounded-full"] { display: none; }
+  main > section:first-of-type > div:last-child > div:last-child { display: none; }
 }
