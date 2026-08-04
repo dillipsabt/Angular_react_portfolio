@@ -74,8 +74,10 @@
 }
 
 @layer components {
-  .eyebrow { @apply text-xs font-bold uppercase tracking-[.22em] text-cyan-600 dark:text-cyan-300; }
-  .section-title { @apply text-4xl font-semibold leading-[1.05] tracking-[-.06em] sm:text-5xl lg:text-6xl; }
+  .eyebrow { @apply inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[.24em] text-cyan-600 dark:text-cyan-300; }
+  .eyebrow::before { content: ""; @apply h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_14px_rgba(34,211,238,.8)]; }
+  .section-title { @apply text-4xl font-semibold leading-[1.02] tracking-[-.07em] sm:text-5xl lg:text-6xl; text-wrap: balance; }
+  .section-title span { @apply bg-gradient-to-r from-black/35 via-black/25 to-black/20 bg-clip-text text-transparent dark:from-white/45 dark:via-white/30 dark:to-white/20; }
   .field { @apply block text-xs font-semibold uppercase tracking-[.14em] text-black/50 dark:text-white/50; }
   .field input, .field textarea { @apply mt-3 block w-full rounded-xl border border-black/10 bg-black/[.025] px-4 py-3.5 text-sm font-normal normal-case tracking-normal text-black transition placeholder:text-black/30 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 dark:border-white/10 dark:bg-white/[.04] dark:text-white dark:placeholder:text-white/25; }
 }
