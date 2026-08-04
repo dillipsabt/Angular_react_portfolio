@@ -211,6 +211,8 @@ footer p, footer a, footer button { color: rgba(236, 239, 255, .55); }
 #root > div.min-h-screen header button,
 #root > div.min-h-screen header nav button { color: rgba(255, 255, 255, .72) !important; }
 #root > div.min-h-screen header nav button.bg-white { background: rgba(255, 255, 255, .12) !important; color: #fff !important; }
+#root > div.min-h-screen header > div > div > button:last-child { background: #fff !important; color: #0a0b12 !important; }
+#root > div.min-h-screen header > div > div > button:last-child svg { color: #0a0b12 !important; }
 #root > div.min-h-screen main > section { background: transparent !important; border-color: rgba(255, 255, 255, .08) !important; }
 #root > div.min-h-screen main > section:first-child { padding-top: 128px; }
 #root > div.min-h-screen main > section:first-child h1 { color: #f8f8ff !important; }
