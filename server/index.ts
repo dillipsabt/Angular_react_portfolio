@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
+import { handleContactInquiry } from "./routes/contact";
 
 export function createServer() {
   const app = express();
@@ -18,6 +19,7 @@ export function createServer() {
   });
 
   app.get("/api/demo", handleDemo);
+  app.post("/api/contact", handleContactInquiry);
 
   return app;
 }
