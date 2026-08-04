@@ -1,5 +1,8 @@
+import dns from "node:dns";
 import { MongoClient } from "mongodb";
 import nodemailer from "nodemailer";
+
+dns.setDefaultResultOrder("ipv4first");
 import { z } from "zod";
 import type { RequestHandler } from "express";
 
